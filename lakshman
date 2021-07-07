@@ -1,0 +1,52 @@
+pipiline {
+ agent any
+ 
+ stages{
+ stage('code checkut'){
+ steps{
+ 
+ //adding git lcation
+ git 'URL'
+
+
+ }
+ 
+  stage('test the code'){
+ steps{
+ 
+ sh "mvn clean test'
+ 
+ 
+
+ }
+  stage('publish he reports'){
+ steps{
+ 
+//doing unit test
+junit '/target/surefire-reports/TEST*.*xml'
+
+
+
+ }
+  stage('buold the package'){
+ steps{
+ 
+  
+sh 'mvn package -DskipTests=true'
+
+
+ }
+  stage('archive to artifact){
+ steps{
+ 
+  archiveArtifacts'/target/*.war'
+
+ }
+
+ }
+ 
+ }
+ 
+ 
+
+}
